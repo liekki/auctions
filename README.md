@@ -11,4 +11,4 @@ yarn install
 
 ## dependencies
 
-You will need the original icon pack, which is not included, from somewhere (https://github.com/mangostools/aowow/tree/develop/images/icons for example) and place the icons folder under `src/client/resources/img`
+The original icon pack is not included. You will need the original icon pack from somewhere, https://github.com/mangostools/aowow/tree/develop/images/icons for example, and copy the icons folder under `src/client/resources/img`
