@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  mongo:
+    image: mongo:3.0.14
+    volumes:
+      - db-data:/data/db
+    ports:
+      - "27017:27017"
+  web:
+    build: .
+    links:
+      - mongo
+    ports:
+      - "3002:3002"
+volumes:
+  db-data:
+    driver: local

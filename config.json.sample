@@ -1,0 +1,9 @@
+{
+  "server": {
+    "port": 3002,
+    "auth": {
+      "user": "foo",
+      "pass": "bar"
+    }
+  }
+}
