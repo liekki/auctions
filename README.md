@@ -3,9 +3,11 @@ Auction house history browser for World of Warcraft 1.12.1
 
 ## install
 
-`git clone`
-`npm install -g yarn`
-`yarn install`
+```
+git clone
+npm install -g yarn
+yarn install
+```
 
 ## dependencies
 
