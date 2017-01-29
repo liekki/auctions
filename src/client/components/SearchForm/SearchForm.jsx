@@ -106,7 +106,7 @@ export default () => {
                 <Link to={`/item/${s.item.id}/${s.rand}`}>
                   <div className={`icon ${s.item.icon}`} style={{backgroundImage: 'url(/static/img/icons/large/'+s.item.icon+'.png)' }} />
                   <span className="name">{s.item.name}{s.suffix && R.concat(' ', s.suffix.name)}</span>
-                  {s.suffix && (<span className="modifiers">({R.drop(1, R.replace(/[^+%0-9]/g, '', s.suffix.modifiers).split('+'))
+                  {s.suffix && (<span className="modifiers">({R.drop(1, R.replace(/([^+%0-9]|5\ssec)/g, '', s.suffix.modifiers).split('+'))
   .map(R.concat('+')).join('/')})</span>)}
                 </Link>
               </li>
