@@ -42,6 +42,11 @@ body {
       &.header-wide {
         text-align: left;
         padding: 0px 4px;
+        display: flex;
+
+        .searchForm {
+          max-width: 500px;
+        }
 
         .logo {
           margin-right: 10px;
@@ -87,6 +92,11 @@ body {
     .container {
       min-height: 100%;
       position: relative;
+
+      .home {
+        max-width: 500px;
+        margin: 0 auto;
+      }
 
       .content {
         min-height: 100%;
@@ -324,7 +334,7 @@ body {
 }
 
 .searchForm {
-  width: 500px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   z-index: 3;
