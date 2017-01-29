@@ -1,0 +1,52 @@
+{
+    "rules": {
+        "no-unused-vars":   [2, {
+            "vars": "all",
+            "args": "after-used"}
+        ],
+        "quotes": [ 2, "single"],
+        "linebreak-style": [ 2, "unix"],
+        "semi": [ 2, "never"],
+        "no-extra-semi": 1,
+        "eol-last": 1,
+        "jsx/uses-factory": [1, {"pragma": "React"}],
+        "jsx/factory-in-scope": [1, {"pragma": "React"}],
+        "jsx/mark-used-vars": 1,
+        "jsx/no-undef": 0
+    },
+    "env": {
+        "es6": true,
+        "node": true,
+        "browser": true,
+        "mocha": true
+    },
+    "extends": "eslint:recommended",
+    "ecmaFeatures": {
+        "jsx": true,
+        "experimentalObjectRestSpread": true,
+        "modules": true
+    },
+    "plugins": [
+        "react",
+        "jsx"
+    ],
+    "predef": {
+      "define": true,
+      "describe": false,
+      "it": false,
+      "before": false,
+      "after": false,
+      "beforeEach": false,
+      "afterEach": false
+    },
+    "globals": {
+    },
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module",
+      "ecmaFeatures": {
+          "jsx": true,
+          "experimentalObjectRestSpread": true
+      }
+    }
+}
