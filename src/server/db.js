@@ -1,8 +1,8 @@
 import Promise from 'bluebird'
 import _ from 'lodash'
-import itemNameMapping from './data/items'
-import suffixMapping from './data/suffixes'
-import suffixNameTransformer from './data/suffixNames'
+import itemNameMapping from './domain/items'
+import suffixMapping from './domain/suffixes'
+import suffixNameTransformer from './domain/suffixNames'
 
 import {
   ACTION_UPDATE,
