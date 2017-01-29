@@ -21,6 +21,7 @@
     "watch:server": "BABEL_ENV=server nodemon --exec babel-node --watch src/server --watch src/shared src/server/main.js",
     "dev:client": "run-s -y clean:client build:client:prepare watch:client",
     "dev:server": "run-s -y clean:server watch:server",
+    "dev": "run-p dev:server dev:client",
     "watch": "run-p -y dev:server dev:client",
     "start": "yarn run dev",
     "import": "BABEL_ENV=server nodemon --exec babel-node src/server/import.js"
