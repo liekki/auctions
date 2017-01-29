@@ -5,13 +5,13 @@ import config from 'nconf'
 import multer from 'multer'
 import Promise from 'bluebird'
 import compression from 'compression'
+import favicon from 'serve-favicon'
 
 import auth from './auth'
 import { readFile, apiResponse } from 'utils'
 import { parse } from './parser'
 import { findRecordById, findRecordsByName, upsertRecord } from './db'
 
-import * as api from './api'
 
 import {
   ACTION_UPDATE,
@@ -27,6 +27,7 @@ const APP_PATH = process.env.APP_PATH || path.resolve(__dirname + '/../../dist/c
 const app = express()
 
 app.use('/static', compression(), express.static(APP_PATH))
+app.use(favicon(APP_PATH + '/img/favicon.ico'))
 
 app.use(bodyParser.json())
 
