@@ -15,7 +15,7 @@
     "build:client": "run-s -y clean:client build:client:prepare build:client:js build:client:css minify:js",
     "minify:js": "uglifyjs dist/client/js/app.js --compress --mangle -o dist/client/js/app.js",
     "build": "run-p -y build:server build:client",
-    "watch:client:js": "BABEL_ENV=client set -a ; . ./.env ; watchify --debug -v -t babelify -t envify src/client/main.js -o dist/client/js/app.js",
+    "watch:client:js": "BABEL_ENV=client watchify --debug -v -t babelify -t envify src/client/main.js -o dist/client/js/app.js",
     "watch:client:css": "npm run build:client:css & watch-run -p 'src/**/*.less' 'npm run build:client:css'",
     "watch:client": "run-p -y watch:client:js watch:client:css",
     "watch:server": "BABEL_ENV=server nodemon --exec babel-node --watch src/server --watch src/shared src/server/main.js",

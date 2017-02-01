@@ -3,8 +3,10 @@ import fetch from 'isomorphic-fetch'
 import R from 'ramda'
 import { groupPricesByTime } from 'utils'
 
+const API_URL = 'http://' + window.location.host
+
 export const findSuggestionsByName = (str) =>
-  fetch(`${process.env.SITE_URL}/api/v1/suggestions/${str}`)
+  fetch(`${API_URL}/api/v1/suggestions/${str}`)
     .then(res => res.json())
     .then(response => {
       if(response.status != 'error')
@@ -13,7 +15,7 @@ export const findSuggestionsByName = (str) =>
     })
 
 export const findItemById = (id, suffix) =>
-  fetch(`${process.env.SITE_URL}/api/v1/item/${id}/${suffix}`)
+  fetch(`${API_URL}/api/v1/item/${id}/${suffix}`)
     .then(res => res.json())
     .then(response => {
       if(response.status != 'error')
@@ -29,7 +31,7 @@ export const findItemById = (id, suffix) =>
     })
 
 export const findItemsByName = (str) =>
-  fetch(`${process.env.SITE_URL}/api/v1/items/${str}`)
+  fetch(`${API_URL}/api/v1/items/${str}`)
     .then(res => res.json())
     .then(response => {
       if(response.status != 'error')
