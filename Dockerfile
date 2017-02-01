@@ -12,6 +12,7 @@ COPY ./src /usr/src/app/src
 
 COPY ./config.json /usr/src/app
 COPY ./.babelrc /usr/src/app
+COPY ./.env /usr/src/app
 
 EXPOSE 3002
 
