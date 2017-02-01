@@ -21,7 +21,7 @@ export default React.createClass({
 
     return (
       <div className={itemClasses}>
-        <div className="icon" style={{backgroundImage: `url(/static/img/icons/large/${item.icon}.png)`}} />
+        <div className="icon" style={{backgroundImage: `url(/static/img/icons/large/${item.icon.toLowerCase()}.png)`}} />
         <table>
           <tbody>
             <tr>

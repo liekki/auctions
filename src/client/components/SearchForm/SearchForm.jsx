@@ -104,7 +104,7 @@ export default () => {
             {U.seq(suggestions$, U.defaultTo([]), U.mapIndexed((s, idx) => (
               <li {...U.classes('suggestion', K(selectedSuggestion$, suggestion => suggestion === s ? 'selected' : ''), `q${s.item.quality}`)} key={idx}>
                 <Link to={`/item/${s.item.id}/${s.rand}`}>
-                  <div className={`icon ${s.item.icon}`} style={{backgroundImage: 'url(/static/img/icons/large/'+s.item.icon+'.png)' }} />
+                  <div className={`icon ${s.item.icon.toLowerCase()}`} style={{backgroundImage: 'url(/static/img/icons/large/'+s.item.icon.toLowerCase()+'.png)' }} />
                   <span className="name">{s.item.name}{s.suffix && R.concat(' ', s.suffix.name)}</span>
                   {s.suffix && (<span className="modifiers">({R.drop(1, R.replace(/([^+%0-9]|5\ssec)/g, '', s.suffix.modifiers).split('+'))
   .map(R.concat('+')).join('/')})</span>)}
