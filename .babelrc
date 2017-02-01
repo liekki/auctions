@@ -3,10 +3,7 @@
     "server": {
       "plugins": [
         ["module-resolver", {
-          "root": ["./src/server"],
-          "alias": {
-            "utils": "./src/client/utils/index.js"
-          }
+          "root": ["./src/server"]
         }]
       ]
     },
