@@ -4,7 +4,7 @@ import R from 'ramda'
 import { groupPricesByTime } from 'utils'
 
 export const findSuggestionsByName = (str) =>
-  fetch(`http://localhost:3002/api/v1/suggestions/${str}`)
+  fetch(`${process.env.SITE_URL}/api/v1/suggestions/${str}`)
     .then(res => res.json())
     .then(response => {
       if(response.status != 'error')
@@ -13,7 +13,7 @@ export const findSuggestionsByName = (str) =>
     })
 
 export const findItemById = (id, suffix) =>
-  fetch(`http://localhost:3002/api/v1/item/${id}/${suffix}`)
+  fetch(`${process.env.SITE_URL}/api/v1/item/${id}/${suffix}`)
     .then(res => res.json())
     .then(response => {
       if(response.status != 'error')
@@ -29,7 +29,7 @@ export const findItemById = (id, suffix) =>
     })
 
 export const findItemsByName = (str) =>
-  fetch(`http://localhost:3002/api/v1/items/${str}`)
+  fetch(`${process.env.SITE_URL}/api/v1/items/${str}`)
     .then(res => res.json())
     .then(response => {
       if(response.status != 'error')
@@ -42,7 +42,7 @@ export const findItemsByName = (str) =>
         prices: groupPricesByTime(data.prices)
       }
     }))
-
+/*
 export const getItemDetailsById = (id) =>
   fetch(`http://localhost:8100/v1/item?id=${id}`)
     .then(res => res.json())
@@ -51,3 +51,4 @@ export const getItemDetailsById = (id) =>
         return response.data
       else Promise.reject('Failed to fetch data from the API')
     })
+*/
