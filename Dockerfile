@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 RUN npm install -g yarn
 RUN npm install -g nodemon
-RUN npm install -g lessc
+RUN npm install -g less
 RUN yarn
 COPY ./src /usr/src/app/src
 
