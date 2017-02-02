@@ -151,6 +151,37 @@ body {
   }
 }
 
+.theorycraft {
+  position: relative;
+  color: #666;
+  text-decoration: underline;
+
+  &:before {
+    -webkit-transition: opacity .20s ease-in-out;
+    -moz-transition: opacity .20s ease-in-out;
+    -ms-transition: opacity .20s ease-in-out;
+    -o-transition: opacity .20s ease-in-out;
+    transition: opacity .20s ease-in-out;
+    opacity: 0;
+    position: absolute;
+    content: '';
+    display: block;
+    top: -47px;
+    left: 10px;
+    width: 134px;
+    height: 47px;
+    background: url(/static/img/recruitment-bubble.png) left top no-repeat;
+  }
+
+  &:hover {
+    color: #888;
+
+    &:before {
+      opacity: 1;
+    }
+  }
+}
+
 .gold {
   margin: 0px 5px;
   .currency {
