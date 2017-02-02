@@ -10,6 +10,8 @@ import {
   ACTION_IGNORE
 } from 'constants'
 
+const REALM_NAME = 'Anathema' // FIXME: Support multiple realms
+
 const MongoClient = Promise.promisifyAll(require('mongodb')).MongoClient
 let db,db2
 
@@ -33,16 +35,16 @@ const findRecord = (record) => {
 }
 
 const findAll = () => {
-  return db.collection('items').find({ server: 'Nostalrius PvP' })
+  return db.collection('items').find({ server: REALM_NAME })
 }
 
 const findRecordsByName = (str, limit = 5) => {
   const nameRegex = new RegExp(`${str}`, 'i')
-  return db.collection('items').findAsync({ 'fullName': nameRegex, prices: { $exists: true, $not: { $size: 0 } }, server: 'Nostalrius PvP' })
+  return db.collection('items').findAsync({ 'fullName': nameRegex, prices: { $exists: true, $not: { $size: 0 } }, server: REALM_NAME })
 }
 
 const findRecordById = (id, suffix = 0) => {
-  return db.collection('items').findOneAsync({ id, rand: suffix, prices: { $exists: true, $not: { $size: 0 } }, server: 'Nostalrius PvP' })
+  return db.collection('items').findOneAsync({ id, rand: suffix, prices: { $exists: true, $not: { $size: 0 } }, server: REALM_NAME })
 }
 
 const upsertRecord = (data) => {
