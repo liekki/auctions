@@ -7,6 +7,7 @@ COPY package.json /usr/src/app/
 RUN npm install -g yarn
 RUN npm install -g nodemon
 RUN npm install -g less
+RUN npm install -g uglifyjs
 RUN yarn
 COPY ./src /usr/src/app/src
 

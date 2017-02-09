@@ -7,7 +7,7 @@
     "clean:server": "rm -rf dist/server",
     "clean:client": "rm -rf dist/client",
     "clean": "run-p -y clean:server clean:client",
-    "build:server:babel": "BABEL_ENV=server babel --source-maps true --out-dir dist/server src/server",
+    "build:server:babel": "BABEL_ENV=server babel --source-maps false --out-dir dist/server src/server",
     "build:server": "run-s -y clean:server build:server:babel",
     "build:client:prepare": "mkdir -p dist/client/js dist/client/css && cp src/client/index.html dist/client/index.html && cp -R src/client/resources/* dist/client/",
     "build:client:js": "BABEL_ENV=client browserify -v -t babelify -t envify src/client/main.js -o dist/client/js/app.js",
@@ -23,7 +23,8 @@
     "dev:server": "run-s -y clean:server watch:server",
     "dev": "run-p dev:server dev:client",
     "watch": "run-p -y dev:server dev:client",
-    "start": "yarn run dev",
+    "start": "yarn run production && node dist/server/main.js",
+    "production": "NODE_ENV=production run-p build:client build:server",
     "import": "BABEL_ENV=server nodemon --exec babel-node src/server/import.js"
   },
   "author": "liekki",
