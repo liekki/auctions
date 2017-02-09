@@ -28,8 +28,6 @@ export default ({ fields, data, sortFn, sortedBy, className = '' }) => {
 
   const Rows = U.seq(data, U.mapIndexed((row, idx) => <Row data={row} fields={fields} key={idx} />), U.toProperty)
 
-  Rows.log()
-
   return (
     <div className={'table-wrapper'}>
       <table {...U.classes(className, 'table')}>
