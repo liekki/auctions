@@ -53,9 +53,8 @@ export default waitForPromises(({ params: { id, suffix }}) =>
         offset: 80,
         scaleMinSpace: 40,
         labelInterpolationFnc: (value) => {
-          return asGold(value).filter(R.identity).map((val, idx) => {
-            const types = ['g', 's', 'c']
-            return `${val}${types[idx]}`
+          return asGold(value).filter(val => val.amount).map((val) => {
+            return `${val.amount}${val.type.charAt(0)}`
           }).join(' ')
         }
       },
@@ -64,9 +63,9 @@ export default waitForPromises(({ params: { id, suffix }}) =>
         Chartist.plugins.tooltip({
           anchorToPoint: true,
           transformTooltipTextFnc: (value) => {
-            return value ? asGold(value).filter(R.identity).map((val, idx) => {
-              const types = ['g', 's', 'c']
-              return `${val}${types[idx]}`
+
+            return value ? asGold(value).filter(val => val.amount).map((val) => {
+              return `${val.amount}${val.type.charAt(0)}`
             }).join(' ') : ''
           }
         })

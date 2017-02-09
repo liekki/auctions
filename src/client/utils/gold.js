@@ -6,5 +6,5 @@ export const asGold = (value) => {
   const silver = Math.floor((value - gold * GOLD_IN_COPPER) / SILVER_IN_COPPER)
   const copper = value - silver * SILVER_IN_COPPER - gold * GOLD_IN_COPPER
 
-  return [gold, silver, copper]
+  return [{amount: gold, type: 'gold'}, {amount: silver, type: 'silver'}, {amount: copper, type: 'copper'}]
 }
