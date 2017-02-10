@@ -44,11 +44,6 @@ export default waitForPromises(({ params: { searchString }}) =>
       sortTable({key: field.key, direction: direction})
     }
 
-    // const invoices$ = deleteInvoice$.ignoreErrors().scan(
-    //   (invoices, id) => L.remove([L.required([]), L.find(R.whereEq({ id }))], invoices),
-    //   invoices
-    // )
-
     const sortedItems$ = Kefir.combine(
       [items$, sortedBy$],
       (items, sortedBy) => {
@@ -59,14 +54,6 @@ export default waitForPromises(({ params: { searchString }}) =>
         return sortBy(items)
       }
     ).toProperty()
-
-    // const sortedItems$ = sortedBy$.combine(items$).map(([sortedBy, items]) => {
-    //   const directionFn = sortedBy.direction === 'ASC' ? R.identity : R.reverse
-    //   const toLowerIfString = (val) => (val && val.toLowerCase) ? val.toLowerCase() : val
-    //   const sortBy = R.compose(directionFn, R.sortBy(R.compose(toLowerIfString, R.prop(sortedBy.key))))
-
-    //   return sortBy(items)
-    // }).toProperty()
 
     return (
       <div>
