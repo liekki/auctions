@@ -1,15 +1,18 @@
 import React from 'karet'
-import { waitForPromises, withUnmount$ } from 'utils/containers'
 import moment from 'moment'
 import R from 'ramda'
 import * as api from 'api'
+import Kefir from 'kefir'
 
-import { Item, Gold } from 'components'
+import { waitForPromises, withUnmount$ } from 'utils/containers'
+import { Item, Gold, Table } from 'components'
+import { sortedBy$, sortTable } from './itemViewStore'
 import { marketValue } from 'utils'
 import { asGold } from 'utils/gold'
+import { persistentProperty } from 'utils/store'
 
 import Chartist from 'chartist'
-import ChartistTooltips from 'chartist-plugin-tooltips'
+import ChartistTooltips from 'chartist-plugin-tooltips' // eslint-disable-line
 import ChartistGraph from 'react-chartist'
 
 export default waitForPromises(({ params: { id, suffix }}) =>
@@ -71,6 +74,44 @@ export default waitForPromises(({ params: { id, suffix }}) =>
         })
       ]
     }
+
+    const items$ = persistentProperty(Kefir.constant(item.prices))
+
+    const tableFields = [
+      {
+        title: 'Date',
+        key: 'time',
+        render: ({time}) => {
+          return moment(time).subtract(1, 'seconds').format('D.M.YYYY')
+        }
+      },
+      {
+        title: 'Price',
+        key: 'price',
+        render: ({price}) => <Gold value={price} />
+      }
+    ]
+
+    const sortFn = async (field) => {
+      const sorting = await sortedBy$.take(1).toPromise()
+      const direction = (field.key === sorting.key && sorting.direction !== 'DESC')
+        ? 'DESC'
+        : 'ASC'
+
+      sortTable({key: field.key, direction: direction})
+    }
+
+    const sortedItems$ = Kefir.combine(
+      [items$, sortedBy$],
+      (items, sortedBy) => {
+        const directionFn = sortedBy.direction === 'ASC' ? R.identity : R.reverse
+        const toLowerIfString = (val) => (val && val.toLowerCase) ? val.toLowerCase() : val
+        const sortBy = R.compose(directionFn, R.sortBy(R.compose(toLowerIfString, R.prop(sortedBy.key))))
+
+        return sortBy(items)
+      }
+    ).toProperty()
+
     return (
       <div className="view">
         <div className="view-header">
@@ -81,23 +122,7 @@ export default waitForPromises(({ params: { id, suffix }}) =>
 
           <div className="flex-box">
             <div className="flex-content flex-shrink">
-
-              <table className="listing">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {item.prices.map((p, idx) => (
-                    <tr key={idx}>
-                      <td>{moment(p.time).subtract(1, 'seconds').format('D.M.YYYY')}</td>
-                      <td><Gold value={p.price} /></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <Table className="listing compact" fields={tableFields} sortedBy={sortedBy$} data={sortedItems$} sortFn={sortFn} />
             </div>
             <div className="flex-content flex-grow">
               <ChartistGraph options={chartOptions} data={chartData} type={'Line'} />
